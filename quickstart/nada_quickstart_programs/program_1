@@ -1,0 +1,21 @@
+from nada_dsl import *
+
+def nada_main():
+
+    # Define two parties
+    party1 = Party(name="Party1")
+    party2 = Party(name="Party2")
+
+    # Inputs from both parties
+    int1 = SecretInteger(Input(name="int1", party=party1))
+    int2 = SecretInteger(Input(name="int2", party=party2))
+
+    # Compute the sum of the two integers
+    sum_int = int1 + int2
+
+    # Compute the average
+    average = sum_int // 2  # Using integer division for simplicity
+
+    # Return the average to both parties
+    return [Output(average, "average_output", party1), Output(average, "average_output", party2)]
+
